@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<title>Trump Answer Machin</title>
+	</head>
+	<body>
+	<center>
+		<img id="Image" src = "Trump.jpg" class="wow fadeInDown animated animated" data-wow-delay=".2s" height = "200px;" style="display:none"/>
+		<div id = "question">What Is Your Question To Trump?</div>
+	</center>
+		<form method = "post" action = "javascript:void(0)"> 
+			<center>
+			<input id="input" name="input" type="text" onkeydown="if($(this).val()==''){$('button').show();$('#enter').hide();}else{$('button').hide();}" />
+			<button id="enter" style="display:none" onclick=
+					"
+						 $.ajax
+								(
+										{
+											type:'POST', // Type of request to be send, called as method
+											data:{input:$('#input').val()},
+											url: 'NumMatch.php',                            // Url to which the request is send
+											async:false,     //waits for request to be done before moving on
+											dataType: 'json',                //Translate json
+											cache:false     // To unable request pages to be cached
+										}
+								)
+								.fail
+								(
+									function()
+									{
+											alert('fail');
+									}
+								).done
+								(
+									function(data)
+									{
+										$('#Image').attr('src', data[0]);
+										$('#output').html(data[1]);
+										responsiveVoice.speak(
+											data[1],
+											'US English Male',
+											{pitch: 0}, 
+											{rate: 1},
+											{volume: 1}
+												);
+												//var voicelist = responsiveVoice.getVoices();
+												//console.log(voicelist);
+									}
+								);
+					"></button>
+			<div class = "wow slideInRight animated animated" id = "answer">
+				<button name="button" id="button" 
+					onclick=
+					"
+						 $.ajax
+								(
+										{
+											type:'POST', // Type of request to be send, called as method
+											data:{Candidate:'Hillary'},
+											url: 'Trump.php',                            // Url to which the request is send
+											async:false,     //waits for request to be done before moving on
+											dataType: 'json',                //Translate json
+											cache:false     // To unable request pages to be cached
+										}
+								)
+								.fail
+								(
+									function()
+									{
+											alert('fail');
+									}
+								).done
+								(
+									function(data)
+									{
+										$('#Image').attr('src', data[0]);
+										$('#output').html(data[1]);
+										responsiveVoice.speak(
+											data[1],
+											'US English Female',
+											{pitch: 0}, 
+											{rate: 1},
+											{volume: 1}
+												);
+												//var voicelist = responsiveVoice.getVoices();
+												//console.log(voicelist);
+									}
+								);
+					">HILLARYISM</button>
+					<br />
+					
+					<button name="button" id="button" 
+					onclick=
+					"
+						 $.ajax
+								(
+										{
+												type:'POST', // Type of request to be send, called as method
+												data:{Candidate:'Trump'},
+												url: 'Trump.php',               // Url to which the request is send
+												async:false,     //waits for request to be done before moving on
+												dataType: 'json',                //Translate json
+												
+												cache:false     // To unable request pages to be cached
+										}
+								)
+								.fail
+								(
+									function()
+									{
+											alert('fail');
+									}
+								).done
+								(
+									function(data)
+									{
+										$('#Image').attr('src', data[0]);
+										$('#output').html(data[1]);
+										responsiveVoice.speak(
+											data[1],
+											'US English Male',
+											{pitch: 0}, 
+											{rate: 1},
+											{volume: 1}
+												);
+												//var voicelist = responsiveVoice.getVoices();
+												//console.log(voicelist);
+									}
+								);
+					">TRUMPISM</button>
+				<div id = "output" style="padding-top:20px"></div>
+			</div>
+			</center>
+		</form>
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+				<script>
+		$("button").click
+		(
+			function()
+			{
+				$("img").show();
+			}
+		);
+	</script> 
+
+</html>

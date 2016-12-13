@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+	<script src="js/modernizr.custom.js"> </script>
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+	<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+	<link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+
+	<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+	<script src="js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Trump Answer Machin</title>
+</head>
+
+
+<body><center>
+
+	<img src = "Trump.jpg" class="wow fadeInDown animated animated" data-wow-delay=".2s" height = "200px;"/>
+
+	<div id = "question">What Is Your Question To Trump?</div>
+
+	<form method = "post" id = "form" action = "http://www.RashadBarnett.com/Trump.php"> 
+		<div class = "wow slideInRight animated animated" id = "answer">
+			<input name = "input" id = "input" ></input>
+            <input type="button" name="submit" id="button" value="Submit" onclick="
+            $.ajax
+            (
+            	{
+            		method: 'POST',
+            		url: 'http://www.rashadbarnett.com/Trump.php',
+            		data: {input:$('#input').val()},
+            		cache: false
+
+          		}
+          	)
+          	.done
+          	(
+          		function(data) 
+          		{
+          			alert('it worked');
+          		}
+          	)
+          	.fail 
+          	(
+          		function() 
+          		{
+          			alert('Failed');
+          		}
+      		);" />
+            <div id = "output"></div>
+	</form>
+</body>
+</center></body>
+</html>
